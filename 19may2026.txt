@@ -1,0 +1,64 @@
+show databases;
+use office;
+show tables from office;
+select * from worker;
+
+select first_name,department,salary from worker where department='admin' and salary >= 110000;
+
+select first_name,department,salary from worker where department='admin' or salary >= 110000;
+
+select worker_id,first_name,department,salary from worker where worker_id in (2,4,7);
+
+select worker_id,first_name,department,salary from worker where worker_id not in (2,5,6);
+
+select * from worker where salary between 100000 and 400000;
+
+select * from worker where salary not between 200000 and 310000;
+
+Select * from worker where salary not between 210000 and 500000
+and department not in ('admin','account');
+
+Select * from worker where salary not between 110000 and 500000
+and department in ('admin','account');
+
+Select * from worker where salary between 100000 and 510000
+and department not in ('hr','account');
+
+Select * from worker where first_name like 'vi__%';
+Select * from worker where last_name like '_i___';
+Select * from worker where last_name like '__n__';
+Select * from worker where last_name like '__n__%';
+
+select * from worker where department = 'admin' and salary = (select min(salary) from worker 
+where first_name not like '%a%');
+
+
+select MIN(salary) from worker where department = 'hr' and first_name not like '%a%';
+
+select max(salary) from worker where department = 'hr' and first_name not like '%a%';
+
+select AVG(salary) from worker where department = 'admin' and last_name like '%a%';
+
+select AVG(salary) from worker where department = 'admin';
+
+select count (distinct department) from worker;
+
+Select salary from worker union all select salary worker worker;
+
+select worker_id as RollNumber from worker;
+
+select distinct (department) from worker;
+
+select worker_id, first_name,
+case
+    when salary > 300000 then 'Rich people'
+    when salary >= 100000 and salary <299999 then 'Middle'
+    else 'Poor'
+end 
+as Status from worker;
+
+create view minSalaryAdmin as select min(salary) from worker where department='admin';
+
+create view maxSalaryAdmin as select max(salary) from worker where department='admin';
+
+select * from maxsalaryadmin;
