@@ -88,7 +88,7 @@ db.locations.insertOne({
 db.sales.createIndex({ title: 1, year: 1 })
 title_1_year_1
 
-db.movies.find({title: /Cappuccino/, price: 10}).explain('executionStats');
+db.sales.find({title: /Cappuccino/, price: 10}).explain('executionStats');
 {
   explainVersion: '1',
   queryPlanner: {
@@ -242,7 +242,7 @@ db.sales.find({title: /'Cappuccino/}).explain('executionStats');
   ok: 1
 }
 
-db.movies.find({price: 10}).explain('executionStats');
+db.sales.find({price: 10}).explain('executionStats');
 
 {
   explainVersion: '1',
